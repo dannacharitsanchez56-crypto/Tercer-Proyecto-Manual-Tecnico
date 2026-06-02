@@ -1,0 +1,19 @@
+---
+import Baselayouts from '../Layouts/Baselayouts.astro';
+const allPost = Object.values(import.meta.glob('./post/*.md', { eager: true }))
+---
+
+<Baselayouts>
+    <div class="flex justify-center items-center w-full m-5">
+  <p class="bg-[#7B609a] p-4 w-1/2 text-white text-center rounded-lg">
+    Si estás leyendo esto, probablemente ya te perdiste en algún tutorial de YouTube. No te preocupes, aquí te explicamos todo sin rodeos y sin que te duermas en el intento.
+  </p>
+</div>
+  {allPost.map((post: any) => (
+    <a href={post.url} class="block m-4 bg-[#e199b1] p-4 rounded-3xl">
+      <h2 class="text-xl font-bold">{post.frontmatter.title}</h2>
+      <p>{post.frontmatter.description}</p>
+    </a>
+  ))}
+
+</Baselayouts>
